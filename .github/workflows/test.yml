@@ -43,8 +43,8 @@ jobs:
 
       - name: Setup DB
         run: |
-          bundle exec db:create
-          bundle exec db:migrate
+          bundle exec rails db:create
+          bundle exec rails db:migrate
 
       - name: Run Test
         run: |
