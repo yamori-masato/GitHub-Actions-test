@@ -34,7 +34,9 @@ jobs:
         run: gem install bundler
       
       - name: Yarn Install
-        run: yarn install --frozen-lockfile
+        run: |
+          npm i -g yarn
+          yarn install --frozen-lockfile
       
       - name: Bundle Install
         run: bundle install
