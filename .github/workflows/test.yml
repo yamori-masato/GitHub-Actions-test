@@ -48,8 +48,6 @@ jobs:
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@postgres:5432/GitHub_Actions_test_test
 
       - name: Run Test
         run: |
