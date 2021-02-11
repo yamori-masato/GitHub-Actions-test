@@ -1,0 +1,50 @@
+name: RSpec
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:10
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
+    container:
+      image: ruby:2.6.3
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: postgres
+        RAILS_DATABASE_USER: postgres
+        RAILS_DATABASE_PASSWORD: password
+
+    steps:
+      - uses: action/checkout@v2
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install Bundler
+        run: gem install bundler
+      
+      - name: Yarn Install
+        run: yarn install --frozen-lockfile
+      
+      - name: Bundle Install
+        run: bundle install
+
+      - name: Setup DB
+        run: |
+          bundle exec db:create
+          bundle exec db:migrate
+
+      - name: Run Test
+        run: |
+          bundle exec rspec
+          
