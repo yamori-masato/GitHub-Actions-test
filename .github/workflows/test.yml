@@ -23,7 +23,7 @@ jobs:
         RAILS_DATABASE_PASSWORD: password
 
     steps:
-      - uses: action/checkout@v1
+      - uses: actions/checkout@v1
       
       - name: Install Node.js
         uses: actions/setup-node@v1
