@@ -36,6 +36,14 @@ jobs:
       - name: Install Bundler
         run: gem install bundler
       
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+      
       - name: Yarn Install
         run: |
           npm i -g yarn
