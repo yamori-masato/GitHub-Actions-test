@@ -6,7 +6,7 @@ default: &default
   username: postgres
   # username: <%= ENV['RAILS_DATABASE_USER'] %>
   # password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
-  # host: <%= ENV['RAILS_DATABASE_HOST'] || 'localhost' %>
+  host: <%= ENV['RAILS_DATABASE_HOST'] %>
 
 development:
   <<: *default
