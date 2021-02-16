@@ -14,16 +14,16 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: GitHub_Actions_test_test
 
     container:
       image: ruby:2.6.3
       env:
         RAILS_ENV: test
-        RAILS_DATABASE_HOST: postgres
-        RAILS_DATABASE_USER: postgres
-        RAILS_DATABASE_PASSWORD: password
+        # RAILS_DATABASE_HOST: postgres
+        # RAILS_DATABASE_USER: postgres
+        # RAILS_DATABASE_PASSWORD: password
 
     steps:
       - uses: actions/checkout@v2
