@@ -15,12 +15,12 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: GitHub_Actions_test_test
+          POSTGRES_DB: GitHub_Actions_test_development
 
     container:
       image: ruby:2.6.3
       env:
-        RAILS_ENV: test
+        RAILS_ENV: development
         RAILS_DATABASE_HOST: postgres
         # RAILS_DATABASE_USER: postgres
         # RAILS_DATABASE_PASSWORD: password
