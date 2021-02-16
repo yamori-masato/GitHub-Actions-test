@@ -21,7 +21,7 @@ jobs:
       image: ruby:2.6.3
       env:
         RAILS_ENV: test
-        # RAILS_DATABASE_HOST: postgres
+        RAILS_DATABASE_HOST: postgres
         # RAILS_DATABASE_USER: postgres
         # RAILS_DATABASE_PASSWORD: password
 
