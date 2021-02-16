@@ -15,15 +15,15 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: GitHub_Actions_test_development
+          POSTGRES_DB: GitHub_Actions_test_test
 
     container:
       image: ruby:2.6.3
       env:
-        RAILS_ENV: development
-        RAILS_DATABASE_HOST: postgres
+        RAILS_ENV: test
+        # RAILS_DATABASE_HOST: postgres
         # RAILS_DATABASE_USER: postgres
-        # RAILS_DATABASE_PASSWORD: password
+        # RAILS_DATABASE_PASSWORD: password dev環境はデフォルトでpassword=usernameになるようだけどtest環境はちゃんと設定しないと？
 
     steps:
       - uses: actions/checkout@v2
