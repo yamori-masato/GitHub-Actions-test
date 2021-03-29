@@ -6,65 +6,65 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:10
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
+    # services:
+    #   postgres:
+    #     image: postgres:10
+    #     ports:
+    #       - 5432:5432
+    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    #     env:
+    #       POSTGRES_USER: postgres
+    #       POSTGRES_PASSWORD: password
 
-    container:
-      image: ruby:2.6.3
-      env:
-        RAILS_ENV: test
-        RAILS_DATABASE_HOST: postgres
-        RAILS_DATABASE_USER: postgres
-        RAILS_DATABASE_PASSWORD: password
+    # container:
+    #   image: ruby:2.6.3
+    #   env:
+    #     RAILS_ENV: test
+    #     RAILS_DATABASE_HOST: postgres
+    #     RAILS_DATABASE_USER: postgres
+    #     RAILS_DATABASE_PASSWORD: password
 
-    steps:
-      - uses: actions/checkout@v2
+    # steps:
+    #   - uses: actions/checkout@v2
       
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+    #   - name: Install Node.js
+    #     uses: actions/setup-node@v1
+    #     with:
+    #       node-version: '12.x'
 
-      - name: Install Bundler
-        run: gem install bundler
+    #   - name: Install Bundler
+    #     run: gem install bundler
       
-      - name: Cache node_modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache-
+    #   - name: Cache node_modules
+    #     uses: actions/cache@v2
+    #     with:
+    #       path: ~/.npm
+    #       key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/yarn.lock') }}
+    #       restore-keys: |
+    #         ${{ runner.OS }}-npm-cache-
 
-      - name: Cache Gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.OS }}-gems-cache-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-gems-cache-
+    #   - name: Cache Gems
+    #     uses: actions/cache@v2
+    #     with:
+    #       path: vendor/bundle
+    #       key: ${{ runner.OS }}-gems-cache-${{ hashFiles('**/Gemfile.lock') }}
+    #       restore-keys: |
+    #         ${{ runner.OS }}-gems-cache-
       
-      - name: Yarn Install
-        run: |
-          npm i -g yarn
-          yarn install --frozen-lockfile
+    #   - name: Yarn Install
+    #     run: |
+    #       npm i -g yarn
+    #       yarn install --frozen-lockfile
       
-      - name: Bundle Install
-        run: bundle install --path=vendor/bundle --jobs 4 --retry 3
+    #   - name: Bundle Install
+    #     run: bundle install --path=vendor/bundle --jobs 4 --retry 3
 
-      - name: Setup DB
-        run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
+    #   - name: Setup DB
+    #     run: |
+    #       bundle exec rails db:create
+    #       bundle exec rails db:migrate
 
-      - name: Run Test
-        run: |
-          bundle exec rspec
+    #   - name: Run Test
+    #     run: |
+    #       bundle exec rspec
           
