@@ -3,9 +3,9 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: <%= ENV['RAILS_DATABASE_USER'] %>
-  password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
-  host: <%= ENV['RAILS_DATABASE_HOST'] %>
+  username: <%= ENV.fetch('RAILS_DATABASE_USER', 'postgres') %>
+  password: <%= ENV.fetch('RAILS_DATABASE_PASSWORD', 'postgres') %>
+  host: <%= ENV.fetch('RAILS_DATABASE_HOST', 'localhost') %>
 
 development:
   <<: *default

@@ -15,7 +15,6 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: GitHub_Actions_test_test
 
     container:
       image: ruby:2.6.3
